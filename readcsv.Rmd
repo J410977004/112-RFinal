@@ -1,0 +1,26 @@
+---
+title: "final project"
+output: html_document
+date: "2023-05-17"
+---
+
+```{r}
+finalproject = list()
+library(readr)
+```
+
+```{r}
+filenames<- c("2018年度A2交通事故資料_1.csv","2018年度A2交通事故資料_2.csv","2018年度A2交通事故資料_3.csv")
+
+for (x in filenames)
+{
+  finalproject[[x]]<-
+    read.csv(paste0("C:/Users/user/Downloads/解壓縮/107年傷亡道路交通事故資料/",x))
+}  
+
+
+
+saveRDS(finalproject, file="finalproject111-2.RDS")
+
+```
+

@@ -1,0 +1,90 @@
+---
+title: "accident"
+output: html_document
+date: "2023-05-29"
+---
+
+
+```{r}
+Accident<- list()
+library(readr)
+```
+
+# import data
+```{r}
+# i = 2018
+{
+  Accident$y2018[[x]]<-
+    read.csv("C:/Users/user/Documents/112RFinal/unzip/107 traffic accident/x")
+}
+```
+
+```{r}
+# i = 2019
+{
+  Accident$y2019[[y]]<-
+   read.csv("C:/Users/user/Documents/112RFinal/unzip/108 traffic accident/y")
+}
+```
+
+```{r}
+# i = 2020
+{
+  Accident$y2020[[z]]<-
+    read.csv("C:/Users/user/Documents/112RFinal/unzip/109 traffic accident/z")
+}
+```
+
+```{r}
+for(x in 
+    c("2018年度A1交通事故資料.csv",
+      "2018年度A2交通事故資料_1.csv", "2018年度A2交通事故資料_2.csv",
+      "2018年度A2交通事故資料_3.csv","2018年度A2交通事故資料_4.csv",
+      "2018年度A2交通事故資料_5.csv","2018年度A2交通事故資料_6.csv",
+      "2018年度A2交通事故資料_7.csv","2018年度A2交通事故資料_8.csv",
+      "2018年度A2交通事故資料_9.csv","2018年度A2交通事故資料_10.csv",
+      "2018年度A2交通事故資料_11.csv","2018年度A2交通事故資料_12.csv"))
+{
+  Accident$y2018[[x]] <-
+    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/107 traffic accident/{x}"))
+}
+```
+
+```{r}
+for(y in 
+    c("2019年度A1交通事故資料.csv",
+      "2019年度A2交通事故資料_1.csv", "2019年度A2交通事故資料_2.csv",
+      "2019年度A2交通事故資料_3.csv","2019年度A2交通事故資料_4.csv",
+      "2019年度A2交通事故資料_5.csv","2019年度A2交通事故資料_6.csv",
+      "2019年度A2交通事故資料_7.csv","2019年度A2交通事故資料_8.csv",
+      "2019年度A2交通事故資料_9.csv","2019年度A2交通事故資料_10.csv",
+      "2019年度A2交通事故資料_11.csv","2019年度A2交通事故資料_12.csv"))
+{
+  Accident$y2019[[y]] <-
+    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/108 traffic accident/{y}"))
+}
+```
+
+```{r}
+for(z in 
+    c("2020年度A1交通事故資料.csv",
+      "2020年度A2交通事故資料_1.csv", "2020年度A2交通事故資料_2.csv",
+      "2020年度A2交通事故資料_3.csv","2020年度A2交通事故資料_4.csv",
+      "2020年度A2交通事故資料_5.csv","2020年度A2交通事故資料_6.csv",
+      "2020年度A2交通事故資料_7.csv","2020年度A2交通事故資料_8.csv",
+      "2020年度A2交通事故資料_9.csv","2020年度A2交通事故資料_10.csv",
+      "2020年度A2交通事故資料_11.csv","2020年度A2交通事故資料_12.csv"))
+{
+  Accident$y2020[[z]] <-
+    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/109 traffic accident/{z}"))
+}
+```
+
+```{r}
+View(Accident$y2018[[x]])
+View(Accident$y2019[[y]])
+View(Accident$y2020[[z]])
+```
+
+
+

@@ -1,90 +1,1473 @@
 ---
 title: "accident"
 output: html_document
-date: "2023-05-29"
+date: "2023-06-14"
 ---
+```{r}
+Final_project<- list()
+```
 
+#  import data
 
 ```{r}
-Accident<- list()
 library(readr)
-```
+library(data.table)
+library(tidyverse)
 
-# import data
-```{r}
-# i = 2018
-{
-  Accident$y2018[[x]]<-
-    read.csv("C:/Users/user/Documents/112RFinal/unzip/107 traffic accident/x")
-}
-```
 
-```{r}
-# i = 2019
-{
-  Accident$y2019[[y]]<-
-   read.csv("C:/Users/user/Documents/112RFinal/unzip/108 traffic accident/y")
-}
-```
+data2020 <- list()
+data2020[[1]] <- read.csv("unzip/109 traffic accident/2020年度A1交通事故資料_0.csv")
+data2020[[2]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_1.csv")
+data2020[[3]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_2.csv")
+data2020[[4]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_3.csv")
+data2020[[5]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_4.csv")
+data2020[[6]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_5.csv")
+data2020[[7]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_6.csv")
+data2020[[8]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_7.csv")
+data2020[[9]] <- read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_8.csv")
+data2020[[10]] <-read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_9.csv")
+data2020[[11]] <-read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_10.csv")
+data2020[[12]] <-read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_11.csv")
+data2020[[13]] <-read.csv("unzip/109 traffic accident/2020年度A2交通事故資料_12.csv")
 
-```{r}
-# i = 2020
-{
-  Accident$y2020[[z]]<-
-    read.csv("C:/Users/user/Documents/112RFinal/unzip/109 traffic accident/z")
-}
-```
+data2019 <- list()
+data2019[[1]] <- read.csv("unzip/108 traffic accident/2019年度A1交通事故資料_0.csv")
+data2019[[2]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_1.csv")
+data2019[[3]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_2.csv")
+data2019[[4]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_3.csv")
+data2019[[5]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_4.csv")
+data2019[[6]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_5.csv")
+data2019[[7]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_6.csv")
+data2019[[8]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_7.csv")
+data2019[[9]] <- read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_8.csv")
+data2019[[10]] <-read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_9.csv")
+data2019[[11]] <-read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_10.csv")
+data2019[[12]] <-read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_11.csv")
+data2019[[13]] <-read.csv("unzip/108 traffic accident/2019年度A2交通事故資料_12.csv")
 
-```{r}
-for(x in 
-    c("2018年度A1交通事故資料.csv",
-      "2018年度A2交通事故資料_1.csv", "2018年度A2交通事故資料_2.csv",
-      "2018年度A2交通事故資料_3.csv","2018年度A2交通事故資料_4.csv",
-      "2018年度A2交通事故資料_5.csv","2018年度A2交通事故資料_6.csv",
-      "2018年度A2交通事故資料_7.csv","2018年度A2交通事故資料_8.csv",
-      "2018年度A2交通事故資料_9.csv","2018年度A2交通事故資料_10.csv",
-      "2018年度A2交通事故資料_11.csv","2018年度A2交通事故資料_12.csv"))
-{
-  Accident$y2018[[x]] <-
-    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/107 traffic accident/{x}"))
-}
-```
 
-```{r}
-for(y in 
-    c("2019年度A1交通事故資料.csv",
-      "2019年度A2交通事故資料_1.csv", "2019年度A2交通事故資料_2.csv",
-      "2019年度A2交通事故資料_3.csv","2019年度A2交通事故資料_4.csv",
-      "2019年度A2交通事故資料_5.csv","2019年度A2交通事故資料_6.csv",
-      "2019年度A2交通事故資料_7.csv","2019年度A2交通事故資料_8.csv",
-      "2019年度A2交通事故資料_9.csv","2019年度A2交通事故資料_10.csv",
-      "2019年度A2交通事故資料_11.csv","2019年度A2交通事故資料_12.csv"))
-{
-  Accident$y2019[[y]] <-
-    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/108 traffic accident/{y}"))
-}
-```
+data2018 <- list()
+data2018[[1]] <- read.csv("unzip/107 traffic accident/2018年度A1交通事故資料_0.csv")
+data2018[[2]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_1.csv")
+data2018[[3]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_2.csv")
+data2018[[4]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_3.csv")
+data2018[[5]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_4.csv")
+data2018[[6]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_5.csv")
+data2018[[7]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_6.csv")
+data2018[[8]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_7.csv")
+data2018[[9]] <- read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_8.csv")
+data2018[[10]] <-read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_9.csv")
+data2018[[11]] <-read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_10.csv")
+data2018[[12]] <-read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_11.csv")
+data2018[[13]] <-read.csv("unzip/107 traffic accident/2018年度A2交通事故資料_12.csv")
 
-```{r}
-for(z in 
-    c("2020年度A1交通事故資料.csv",
-      "2020年度A2交通事故資料_1.csv", "2020年度A2交通事故資料_2.csv",
-      "2020年度A2交通事故資料_3.csv","2020年度A2交通事故資料_4.csv",
-      "2020年度A2交通事故資料_5.csv","2020年度A2交通事故資料_6.csv",
-      "2020年度A2交通事故資料_7.csv","2020年度A2交通事故資料_8.csv",
-      "2020年度A2交通事故資料_9.csv","2020年度A2交通事故資料_10.csv",
-      "2020年度A2交通事故資料_11.csv","2020年度A2交通事故資料_12.csv"))
-{
-  Accident$y2020[[z]] <-
-    read.csv(glue::glue("C:/Users/user/Documents/112RFinal/unzip/109 traffic accident/{z}"))
-}
+# combine csv files
+merged_data_109 <- do.call(rbind, data2020)
+merged_data_108 <- do.call(rbind, data2019)
+merged_data_107 <- do.call(rbind, data2018)
 ```
 
 ```{r}
-View(Accident$y2018[[x]])
-View(Accident$y2019[[y]])
-View(Accident$y2020[[z]])
+Final_project$year109 <- merged_data_109
+Final_project$year108 <- merged_data_108
+Final_project$year107 <- merged_data_107
+```
+
+# Split the data frame under specific conditions
+```{r}
+
+location_split_109 <- split(Final_project$year109, Final_project$year109$處理單位名稱警局層)
+
+location_split_108 <- split(Final_project$year108, Final_project$year108$處理單位名稱警局層)
+
+location_split_107 <- split(Final_project$year107, Final_project$year107$處理單位名稱警局層)
+
+View(location_split_109)
+View(location_split_108)
+View(location_split_107)
+```
+
+```{r}
+# location 道路安全網站中每10萬人發生事故件數前五名地區(由高到低排序)
+
+dplyr::glimpse(location_split_109$新竹縣政府警察局)->
+  location_109年新竹縣政府警察局
+dplyr::glimpse(location_split_109$新竹市警察局)->
+  location_109年新竹市警察局
+dplyr::glimpse(location_split_109$桃園市政府警察局)->
+  location_109年桃園市政府警察局
+dplyr::glimpse(location_split_109$屏東縣政府警察局)->
+  location_109年屏東縣政府警察局
+dplyr::glimpse(location_split_109$花蓮縣警察局)->
+  location_109年花蓮縣警察局
+dplyr::glimpse(location_split_109$南投縣政府警察局)->
+  location_109年南投縣政府警察局
+  
+
+
+dplyr::glimpse(location_split_108$新竹市警察局)->
+  location_108年新竹市警察局
+dplyr::glimpse(location_split_108$新竹縣政府警察局)->
+  location_108年新竹縣政府警察局
+dplyr::glimpse(location_split_108$屏東縣政府警察局)->
+  location_108年屏東縣政府警察局
+dplyr::glimpse(location_split_108$桃園市政府警察局)->
+  location_108年桃園市政府警察局
+dplyr::glimpse(location_split_108$宜蘭縣政府警察局)->
+  location_108年宜蘭縣政府警察局
+dplyr::glimpse(location_split_108$彰化縣警察局)->
+  location_108年彰化縣警察局
+
+
+
+dplyr::glimpse(location_split_107$新竹市警察局)->
+  location_107年新竹市警察局
+dplyr::glimpse(location_split_107$新竹縣政府警察局)->
+  location_107年新竹縣政府警察局
+dplyr::glimpse(location_split_107$屏東縣政府警察局)->
+  location_107年屏東縣政府警察局
+dplyr::glimpse(location_split_107$高雄市政府警察局)->
+  location_107年高雄市政府警察局
+dplyr::glimpse(location_split_107$臺中市政府警察局)->
+  location_107年臺中市政府警察局
+dplyr::glimpse(location_split_107$臺東縣警察局)->
+  location_107年臺東縣警察局
+
 ```
 
 
+# Retrive elements by positions or logicals to answer the following questions.
+```{r}
+# 1. 各管轄警局死傷事故次數好發月份前三名為何？各地大致相同，春節、年末，偶而暑假
+
+library("dplyr")
+
+# i會依序帶入1~12月
+
+#2020
+
+result <- 0
+  for(i in c(1:12)) # location_109年新竹縣政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Hsinchu_County_109 <- location_109年新竹縣政府警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_County_109) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) # location_109年新竹市警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Hsinchu_City_109 <- location_109年新竹市警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_City_109) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) # location_109年桃園市政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Taoyuan_City_109 <- location_109年桃園市政府警察局$發生月份
+  positionIndices = grepl(i, Taoyuan_City_109 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_109年屏東縣政府警察局好發月份：1,2,6月
+ {  
+  result <- result + i
+  Pingtung_County_109 <- location_109年屏東縣政府警察局$發生月份
+  positionIndices = grepl(i, Pingtung_County_109) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_109年花蓮縣警察局好發月份：1,2,7月
+ {  
+  result <- result + i
+  Hualien_County_109 <- location_109年花蓮縣警察局$發生月份
+  positionIndices = grepl(i, Hualien_County_109 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_109年南投縣政府警察局月好發月份：1,2,10月
+ {  
+  result <- result + i
+  Nantou_County_109 <- location_109年南投縣政府警察局$發生月份
+  positionIndices = grepl(i, Nantou_County_109) 
+  print(sum(positionIndices,na.rm=T))
+  }
+  
+#-------------------------------------------------------------------------------------------
+
+#2019
+  
+result <- 0
+  for(i in c(1:12)) # location_108年新竹市警察局好發月份：1,2,11月
+ {  
+  result <- result + i
+  Hsinchu_City_108 <- location_108年新竹市警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_City_108) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) # location_108年新竹縣政府警察局好發月份：1,2,10月
+ {  
+  result <- result + i
+  Hsinchu_County_108 <- location_108年新竹縣政府警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_County_108) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) #location_108年屏東縣政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Pingtung_County_108 <- location_108年屏東縣政府警察局$發生月份
+  positionIndices = grepl(i, Pingtung_County_108) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) # location_108年桃園市政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Taoyuan_City_108 <- location_108年桃園市政府警察局$發生月份
+  positionIndices = grepl(i, Taoyuan_City_108 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_108年宜蘭縣政府警察局好發月份：1,2,7月
+ {  
+  result <- result + i
+  Yilan_County_108 <- location_108年宜蘭縣政府警察局$發生月份
+  positionIndices = grepl(i, Yilan_County_108 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_108年彰化縣警察局月好發月份：1,2,12月
+ {  
+  result <- result + i
+  Changhua_County_108 <- location_108年彰化縣警察局$發生月份
+  positionIndices = grepl(i, Changhua_County_108) 
+  print(sum(positionIndices,na.rm=T))
+  } 
+
+#-------------------------------------------------------------------------------------------
+
+#2018
+
+result <- 0
+  for(i in c(1:12)) # location_107年新竹市警察局好發月份：1,2,10月
+ {  
+  result <- result + i
+  Hsinchu_City_107 <- location_107年新竹市警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_City_107) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) # location_107年新竹縣政府警察局好發月份：1,2,10月
+ {  
+  result <- result + i
+  Hsinchu_County_107 <- location_107年新竹縣政府警察局$發生月份
+  positionIndices = grepl(i, Hsinchu_County_107) 
+  print(sum(positionIndices,na.rm=T))
+    }
+
+result <- 0
+  for(i in c(1:12)) #location_107年屏東縣政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Pingtung_County_107 <- location_107年屏東縣政府警察局$發生月份
+  positionIndices = grepl(i, Pingtung_County_107) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) # location_107年高雄市政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Kaohsiung_City_107 <- location_107年高雄市政府警察局$發生月份
+  positionIndices = grepl(i, Kaohsiung_City_107 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_107年臺中市政府警察局好發月份：1,2,12月
+ {  
+  result <- result + i
+  Taichung_County_107 <- location_107年臺中市政府警察局$發生月份
+  positionIndices = grepl(i, Taichung_County_107 ) 
+  print(sum(positionIndices,na.rm=T))
+  }
+
+result <- 0
+  for(i in c(1:12)) #  location_107年臺東縣警察局局月好發月份：1,2,11月
+ {  
+  result <- result + i
+  Taitung_County_107 <- location_107年臺東縣警察局$發生月份
+  positionIndices = grepl(i, Taitung_County_107) 
+  print(sum(positionIndices,na.rm=T))
+  }
+```
+
+
+```{r}
+# 2. 天候名稱會影響事故發生件數嗎？ 
+
+
+#使用environment查詢可知下列結果：
+#2020年,不論晴天79128，陰天15128,雨天15210均以桃園市事故最多，推測與人口數有關，以晴天最常發生事故
+#2019年,不論晴天67929，陰天13825,雨天12801均以桃園市事故最多，推測與人口數有關，以晴天最常發生事故
+#2018年,不論晴天88814，陰天4795,雨天8030均以高雄市事故最多，台中市緊隨其後，推測與人口數有關，以晴天最常發生事故
+
+#2020 
+sunny_109年新竹縣政府警察局<- subset(location_109年新竹縣政府警察局, 天候名稱 =="晴")
+cloudy_109年新竹縣政府警察局<- subset(location_109年新竹縣政府警察局, 天候名稱 == "陰")
+rainy_109年新竹縣政府警察局<- subset(location_109年新竹縣政府警察局, 天候名稱 == "雨")
+
+sunny_109年新竹縣政府警察局 
+cloudy_109年新竹縣政府警察局 
+rainy_109年新竹縣政府警察局
+#------
+ 
+sunny_109年新竹市警察局<- subset(location_109年新竹市警察局, 天候名稱 =="晴")
+cloudy_109年新竹市警察局<- subset(location_109年新竹市警察局, 天候名稱 == "陰")
+rainy_109年新竹市警察局<- subset(location_109年新竹市警察局, 天候名稱 == "雨")
+
+sunny_109年新竹市警察局
+cloudy_109年新竹市警察局
+rainy_109年新竹市警察局
+#------
+
+sunny_109年桃園市政府警察局<- subset(location_109年桃園市政府警察局, 天候名稱 =="晴")
+cloudy_109年桃園市政府警察局<- subset(location_109年桃園市政府警察局, 天候名稱 == "陰")
+rainy_109年桃園市政府警察局<- subset(location_109年桃園市政府警察局, 天候名稱 == "雨")
+
+sunny_109年桃園市政府警察局
+cloudy_109年桃園市政府警察局
+rainy_109年桃園市政府警察局
+#------
+
+sunny_109年屏東縣政府警察局<- subset(location_109年屏東縣政府警察局, 天候名稱 =="晴")
+cloudy_109年屏東縣政府警察局<- subset(location_109年屏東縣政府警察局, 天候名稱 == "陰")
+rainy_109年屏東縣政府警察局<- subset(location_109年屏東縣政府警察局, 天候名稱 == "雨")
+
+sunny_109年屏東縣政府警察局
+cloudy_109年屏東縣政府警察局
+rainy_109年屏東縣政府警察局
+#------
+
+sunny_109年花蓮縣警察局<- subset(location_109年花蓮縣警察局, 天候名稱 =="晴")
+cloudy_109年花蓮縣警察局<- subset(location_109年花蓮縣警察局, 天候名稱 == "陰")
+rainy_109年花蓮縣警察局<- subset(location_109年花蓮縣警察局, 天候名稱 == "雨")
+
+sunny_109年花蓮縣警察局
+cloudy_109年花蓮縣警察局
+rainy_109年花蓮縣警察局
+#------
+
+sunny_109年南投縣政府警察局<- subset(location_109年南投縣政府警察局, 天候名稱 =="晴")
+cloudy_109年南投縣政府警察局<- subset(location_109年南投縣政府警察局, 天候名稱 == "陰")
+rainy_109年南投縣政府警察局<- subset(location_109年南投縣政府警察局, 天候名稱 == "雨")
+
+sunny_109年南投縣政府警察局
+cloudy_109年南投縣政府警察局
+rainy_109年南投縣政府警察局
+#------
+
+
+
+#2019
+
+sunny_108年新竹市警察局<- subset(location_108年新竹市警察局, 天候名稱 =="晴")
+cloudy_108年新竹市警察局<- subset(location_108年新竹市警察局, 天候名稱 == "陰")
+rainy_108年新竹市警察局<- subset(location_108年新竹市警察局, 天候名稱 == "雨")
+
+sunny_108年新竹市警察局
+cloudy_108年新竹市警察局
+rainy_108年新竹市警察局
+#------
+
+sunny_108年新竹縣政府警察局<- subset(location_108年新竹縣政府警察局, 天候名稱 =="晴")
+cloudy_108年新竹縣政府警察局<- subset(location_108年新竹縣政府警察局, 天候名稱 == "陰")
+rainy_108年新竹縣政府警察局<- subset(location_108年新竹縣政府警察局, 天候名稱 == "雨")
+
+sunny_108年新竹縣政府警察局
+cloudy_108年新竹縣政府警察局
+rainy_108年新竹縣政府警察局
+#------
+
+sunny_108年屏東縣政府警察局<- subset(location_108年屏東縣政府警察局, 天候名稱 =="晴")
+cloudy_108年屏東縣政府警察局<- subset(location_108年屏東縣政府警察局, 天候名稱 == "陰")
+rainy_108年屏東縣政府警察局<- subset(location_108年屏東縣政府警察局, 天候名稱 == "雨")
+
+sunny_108年屏東縣政府警察局
+cloudy_108年屏東縣政府警察局
+rainy_108年屏東縣政府警察局
+#------
+
+sunny_108年桃園市政府警察局<- subset(location_108年桃園市政府警察局, 天候名稱 =="晴")
+cloudy_108年桃園市政府警察局<- subset(location_108年桃園市政府警察局, 天候名稱 == "陰")
+rainy_108年桃園市政府警察局<- subset(location_108年桃園市政府警察局, 天候名稱 == "雨")
+
+sunny_108年桃園市政府警察局
+cloudy_108年桃園市政府警察局
+rainy_108年桃園市政府警察局
+#------
+
+sunny_108年宜蘭縣政府警察局<- subset(location_108年宜蘭縣政府警察局, 天候名稱 =="晴")
+cloudy_108年宜蘭縣政府警察局<- subset(location_108年宜蘭縣政府警察局, 天候名稱 == "陰")
+rainy_108年宜蘭縣政府警察局<- subset(location_108年宜蘭縣政府警察局, 天候名稱 == "雨")
+
+sunny_108年宜蘭縣政府警察局
+cloudy_108年宜蘭縣政府警察局
+rainy_108年宜蘭縣政府警察局
+#------
+
+sunny_108年彰化縣警察局<- subset(location_108年彰化縣警察局, 天候名稱 =="晴")
+cloudy_108年彰化縣警察局<- subset(location_108年彰化縣警察局, 天候名稱 == "陰")
+rainy_108年彰化縣警察局<- subset(location_108年彰化縣警察局, 天候名稱 == "雨")
+
+sunny_108年彰化縣警察局
+cloudy_108年彰化縣警察局
+rainy_108年彰化縣警察局
+
+
+
+#2018
+
+
+sunny_107年新竹市警察局<- subset(location_107年新竹市警察局, 天候名稱 == "晴")
+cloudy_107年新竹市警察局<- subset(location_107年新竹市警察局, 天候名稱 == "陰")
+rainy_107年新竹市警察局<- subset(location_107年新竹市警察局, 天候名稱 == "雨")
+
+sunny_107年新竹市警察局
+cloudy_107年新竹市警察局
+rainy_107年新竹市警察局
+#------
+
+sunny_107年新竹縣政府警察局<- subset(location_107年新竹縣政府警察局, 天候名稱 == "晴")
+cloudy_107年新竹縣政府警察局<- subset(location_107年新竹縣政府警察局, 天候名稱 == "陰")
+rainy_107年新竹縣政府警察局<- subset(location_107年新竹縣政府警察局, 天候名稱 == "雨")
+
+sunny_107年新竹縣政府警察局
+cloudy_107年新竹縣政府警察局
+rainy_107年新竹縣政府警察局
+#------
+
+sunny_107年屏東縣政府警察局<- subset(location_107年屏東縣政府警察局, 天候名稱 == "晴")
+cloudy_107年屏東縣政府警察局<- subset(location_107年屏東縣政府警察局, 天候名稱 == "陰")
+rainy_107年屏東縣政府警察局<- subset(location_107年屏東縣政府警察局, 天候名稱 == "雨")
+
+sunny_107年屏東縣政府警察局
+cloudy_107年屏東縣政府警察局
+rainy_107年屏東縣政府警察局
+#------
+
+sunny_107年高雄市政府警察局<- subset(location_107年高雄市政府警察局, 天候名稱 == "晴")
+cloudy_107年高雄市政府警察局<- subset(location_107年高雄市政府警察局, 天候名稱 == "陰")
+rainy_107年高雄市政府警察局<- subset(location_107年高雄市政府警察局, 天候名稱 == "雨")
+
+sunny_107年高雄市政府警察局
+cloudy_107年高雄市政府警察局
+rainy_107年高雄市政府警察局
+#------
+
+sunny_107年臺中市政府警察局<- subset(location_107年臺中市政府警察局, 天候名稱 == "晴")
+cloudy_107年臺中市政府警察局<- subset(location_107年臺中市政府警察局, 天候名稱 == "陰")
+rainy_107年臺中市政府警察局<- subset(location_107年臺中市政府警察局, 天候名稱 == "雨")
+
+sunny_107年臺中市政府警察局
+cloudy_107年臺中市政府警察局
+rainy_107年臺中市政府警察局
+#------
+
+sunny_107年臺東縣警察局<- subset(location_107年臺東縣警察局, 天候名稱 == "晴")
+cloudy_107年臺東縣警察局<- subset(location_107年臺東縣警察局, 天候名稱 == "陰")
+rainy_107年臺東縣警察局<- subset(location_107年臺東縣警察局, 天候名稱 == "雨")
+
+sunny_107年臺東縣警察局
+cloudy_107年臺東縣警察局
+rainy_107年臺東縣警察局
+#------
+  
+```
+
+```{r}
+# 3. 光線名稱會影響事故發生件數嗎？ #在絕大多數情況下，具有日間自然光線事故件數較多，符合人類生活作息，
+#但值得注意的是，相較於夜間(或隧道、地下道、涵洞)有照明事故發生件數竟然比夜間(或隧道、地下道、涵洞)無照明事故發生件數更多，這也反映出夜間即使有照明也不一定安全                     
+#2020
+
+location_109年新竹縣政府警察局$光線名稱 |> table()|> sort()
+location_109年新竹市警察局$光線名稱 |> table()|> sort()
+location_109年桃園市政府警察局$光線名稱 |> table()|> sort()
+location_109年屏東縣政府警察局$光線名稱 |> table()|> sort()
+location_109年花蓮縣警察局$光線名稱 |> table()|> sort()
+location_109年南投縣政府警察局$光線名稱 |> table()|> sort()
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$光線名稱 |> table()|> sort()
+location_108年新竹縣政府警察局$光線名稱 |> table()|> sort()
+location_108年屏東縣政府警察局$光線名稱 |> table()|> sort()
+location_108年桃園市政府警察局$光線名稱 |> table()|> sort()
+location_108年宜蘭縣政府警察局$光線名稱 |> table()|> sort()
+location_108年彰化縣警察局$光線名稱 |> table()|> sort()
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$光線名稱 |> table()|> sort()
+location_107年新竹縣政府警察局$光線名稱 |> table()|> sort()
+location_107年屏東縣政府警察局$光線名稱 |> table()|> sort()
+location_107年高雄市政府警察局$光線名稱 |> table()|> sort()
+location_107年臺中市政府警察局$光線名稱 |> table()|> sort()
+location_107年臺東縣警察局$光線名稱 |> table()|> sort()
+
+```
+
+
+```{r}
+# 4. 道路類別會影響事故發生件數嗎？ 
+
+#不論2018-2020年，各轄區警察局觀察發現，通常"市區道路" 與"村里道路" 是事故發生次數最多的地方，常理可以理解城市較為擁擠車水馬龍，而鄉村因為基礎交通設施可能略顯不足加上通常車速較快，故兩者位於伯仲之間,而"其他" 次之
+
+
+#2020
+
+
+location_109年新竹縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年新竹縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_109年新竹縣政府警察局$道路類別.第1當事者.名稱)
+location_109年新竹縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+
+#------
+location_109年新竹市警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年新竹市警察局$道路類別.第1當事者.名稱
+
+levels(location_109年新竹市警察局$道路類別.第1當事者.名稱)
+location_109年新竹市警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+
+#------
+
+location_109年桃園市政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年桃園市政府警察局$道路類別.第1當事者.名稱
+
+levels(location_109年桃園市政府警察局$道路類別.第1當事者.名稱)
+location_109年桃園市政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_109年屏東縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年屏東縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_109年屏東縣政府警察局$道路類別.第1當事者.名稱)
+location_109年屏東縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_109年花蓮縣警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年花蓮縣警察局$道路類別.第1當事者.名稱
+
+levels(location_109年花蓮縣警察局$道路類別.第1當事者.名稱)
+location_109年花蓮縣警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+location_109年南投縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_109年南投縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_109年南投縣政府警察局$道路類別.第1當事者.名稱)
+location_109年南投縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+#2019
+
+
+location_108年新竹市警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他","NA" ))->location_108年新竹市警察局$道路類別.第1當事者.名稱
+
+levels(location_108年新竹市警察局$道路類別.第1當事者.名稱)
+location_108年新竹市警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_108年新竹縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_108年新竹縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_108年新竹縣政府警察局$道路類別.第1當事者.名稱)
+location_108年新竹縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_108年屏東縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_108年屏東縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_108年屏東縣政府警察局$道路類別.第1當事者.名稱)
+location_108年屏東縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_108年桃園市政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_108年桃園市政府警察局$道路類別.第1當事者.名稱
+
+levels(location_108年桃園市政府警察局$道路類別.第1當事者.名稱)
+location_108年桃園市政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_108年宜蘭縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_108年宜蘭縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_108年宜蘭縣政府警察局$道路類別.第1當事者.名稱)
+location_108年宜蘭縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_108年彰化縣警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_108年彰化縣警察局$道路類別.第1當事者.名稱
+
+levels(location_108年彰化縣警察局$道路類別.第1當事者.名稱)
+location_108年彰化縣警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+
+#2018
+
+location_107年新竹市警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年新竹市警察局$道路類別.第1當事者.名稱
+
+levels(location_107年新竹市警察局$道路類別.第1當事者.名稱)
+location_107年新竹市警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_107年新竹縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年新竹縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_107年新竹縣政府警察局$道路類別.第1當事者.名稱)
+location_107年新竹縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_107年屏東縣政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年屏東縣政府警察局$道路類別.第1當事者.名稱
+
+levels(location_107年屏東縣政府警察局$道路類別.第1當事者.名稱)
+location_107年屏東縣政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_107年高雄市政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年高雄市政府警察局$道路類別.第1當事者.名稱
+
+levels(location_107年高雄市政府警察局$道路類別.第1當事者.名稱)
+location_107年高雄市政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_107年臺中市政府警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年臺中市政府警察局$道路類別.第1當事者.名稱
+
+levels(location_107年臺中市政府警察局$道路類別.第1當事者.名稱)
+location_107年臺中市政府警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+location_107年臺東縣警察局$道路類別.第1當事者.名稱|>factor( order= T, levels=c( "省道","縣道","鄉道" ,"專用道路" ,"市區道路" ,"村里道路" ,"其他" ))->location_107年臺東縣警察局$道路類別.第1當事者.名稱
+
+levels(location_107年臺東縣警察局$道路類別.第1當事者.名稱)
+location_107年臺東縣警察局$道路類別.第1當事者.名稱|>as.integer()|>table()|>
+  sort(decreasing=T)
+#------
+
+
+```
+
+
+```{r}
+# 5. 道路型態子類別名稱會影響事故發生件數嗎？ 
+
+#根據觀察，以"坡路","圓環","隧道"三處發生事故次數最多，行經此處應多留意
+
+factor(levels=c("直路","三岔路","四岔路","多岔路","彎曲路及附近","坡路","圓環","隧道","巷弄","地下道","高架道路","涵洞","橋樑","有遮斷器","無遮斷器", "廣場","其他"))
+
+#2020
+location_109年新竹縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年新竹市警察局$道路型態子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$道路型態子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$道路型態子類別名稱|>factor() |>as.integer()|>
+  table()|>sort(decreasing=T)
+location_109年花蓮縣警察局$道路型態子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$道路型態子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年彰化縣警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年臺東縣警察局$道路型態子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+
+```
+
+
+```{r}
+# 6. 那些事故位置子類別最容易發生車禍？ 
+
+#根據觀察，以"一般車道(未劃分快慢車道)","機車優先道","機車待轉區"三處發生事故次數最多，行經此處應多留意
+
+
+factor(levels=c("一般車道(未劃分快慢車道)" ,"人行道" , "交叉口附近" ,"交叉路口內" ,"機車優先道","機車待轉區","機車專用道", "機車停等區","加速車道" ,"快車道" , "慢車道",            "減速車道", "穿越道附近" ,"公車專用道", "行人穿越道","迴轉道","直線匝道","環道匝道" ,"交通島(含槽化線)","路肩、路緣" ,"其他")) 
+ 
+#2020
+location_109年新竹縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年新竹市警察局$事故位置子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$事故位置子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$事故位置子類別名稱|>factor() |>as.integer()|>
+  table()|>sort(decreasing=T)
+location_109年花蓮縣警察局$事故位置子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$事故位置子類別名稱|>factor() |>as.integer()|>
+  table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_108年彰化縣警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$事故位置子類別名稱|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+location_107年臺東縣警察局$事故位置子類別|>factor()|>as.integer()|>
+  table()|> sort(decreasing=T)
+
+
+```
+
+
+```{r}
+# 7. 路面狀況.路面狀態名稱會影響事故發生件數嗎？ 
+
+#根據結果，路面狀況.路面狀態名稱不太會是影響事故發生次數之原因，以乾燥路面為最多
+
+#2020
+
+location_109年新竹縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$路面狀況.路面狀態名稱 |> table()|> sort(decreasing=T)
+
+```
+
+```{r}
+# 8. 路面狀況.路面缺陷名稱會影響事故發生件數嗎？
+
+#根據結果，路面狀況.路面缺陷不太會是影響事故發生次數之原因，以無缺陷為最多
+
+#2020
+
+location_109年新竹縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$路面狀況.路面缺陷名稱 |> table()|> sort(decreasing=T)
+
+```
+
+
+```{r}
+# 9. 車道劃分會影響事故發生件數嗎？ 
+
+#根據結果，車道劃分不太會是影響事故發生次數之原因，以未繪設車道線為最多
+
+
+#2020
+
+location_109年新竹縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$車道劃分設施.分道設施.快車道或一般車道間名稱|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$車道劃分設施.分道設施.快車道或一般車道間名稱 |> table()|> sort(decreasing=T)
+
+
+```
+
+
+```{r}
+# 10. 哪種事故類型及型態大類別名稱有較多事故發生件數？ 
+
+#根據結果，車與車碰撞所造成的事故次數為最多
+
+#2020
+
+location_109年新竹縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$事故類型及型態大類別名|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$事故類型及型態大類別名|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$事故類型及型態大類別名|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$事故類型及型態大類別名 |> table()|> sort(decreasing=T)
+```
+
+
+```{r}
+# 11. 哪種事故類型及型態子類別名稱有較多事故發生件數？ 
+
+#根據結果，側撞所造成的事故次數為最多,其他原因次之，追撞、同向擦撞、路口交岔撞 也在伯仲之間，推測側撞造成事故主因為駕駛人已踩下煞車試圖阻止撞擊，造成車體打滑仍不幸釀成事故
+
+#2020
+
+location_109年新竹縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$事故類型及型態子類別名|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$事故類型及型態子類別名|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$事故類型及型態子類別名|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$事故類型及型態子類別名 |> table()|> sort(decreasing=T)
+```
+
+
+```{r}
+# 12. 事故的肇因研判子類別名稱.主要為那些？ 
+
+#根據觀察，未依規定讓車、未注意車前狀態 、其他引起事故之違規或不當行為 、違反特定標誌(線)禁制及未遵守號誌、左轉彎未依規定  等五大因素造成絕大多數的事故發生
+                                     
+#2020
+
+location_109年新竹縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$肇因研判子類別名稱.主要|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$肇因研判子類別名稱.主要|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$事故類型及型態子類別名|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$肇因研判子類別名稱.主要 |> table()|> sort(decreasing=T)
+
+```
+
+```{r}
+# 13. 當事者事故發生時年齡？ 平均、中位數、標準差、第一四分位、第三四分位
+
+#根據觀察，當事者事故發生時年齡平均、中位數約落在35-38歲 、第一四分位約落在21-24歲、第三四分位約落在50-55歲，看不太出年齡與事故發生次數之相關性
+
+
+#2020
+
+result.mean<- mean(location_109年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年新竹縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年新竹縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年新竹縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_109年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年新竹市警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年新竹市警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年新竹市警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+
+result.mean<- mean(location_109年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年桃園市政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年桃園市政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年桃園市政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_109年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年屏東縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年屏東縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年屏東縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_109年花蓮縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年花蓮縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年花蓮縣警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年花蓮縣警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年花蓮縣警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_109年南投縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_109年南投縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_109年南投縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_109年南投縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_109年南投縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+
+#2019
+
+
+result.mean<- mean(location_108年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年新竹市警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年新竹市警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年新竹市警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_108年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年新竹縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年新竹縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年新竹縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_108年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年屏東縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年屏東縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年屏東縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+
+#---------
+
+result.mean<- mean(location_108年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年桃園市政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年桃園市政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年桃園市政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_108年宜蘭縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年宜蘭縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年宜蘭縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年宜蘭縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年宜蘭縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_108年彰化縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_108年彰化縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_108年彰化縣警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_108年彰化縣警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_108年彰化縣警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+#2018
+
+result.mean<- mean(location_107年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年新竹市警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年新竹市警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年新竹市警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_107年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年新竹縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年新竹縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年新竹縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+result.mean<- mean(location_107年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年屏東縣政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年屏東縣政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年屏東縣政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_107年高雄市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年高雄市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年高雄市政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年高雄市政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年高雄市政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_107年臺中市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年臺中市政府警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年臺中市政府警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年臺中市政府警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年臺中市政府警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+
+result.mean<- mean(location_107年臺東縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.mean)
+
+result.median<-median(location_107年臺東縣警察局$當事者事故發生時年齡,trim=0.1)   
+print(result.median)
+
+result.sd<- sd(location_107年臺東縣警察局$當事者事故發生時年齡)
+print(result.sd)
+
+result.q1<- quantile(location_107年臺東縣警察局$當事者事故發生時年齡,probs=0.25)
+print(result.q1)
+
+result.q3<- quantile(location_107年臺東縣警察局$當事者事故發生時年齡,probs=0.75)
+print(result.q3)
+
+#---------
+```
+
+```{r}
+# 14. 發生事故時使用了那些保護裝置名稱？ 
+
+#觀察下列結果，發現仍有部分民眾未戴案全帽或未繫安全帶(未使用幼童安全椅)，希望未來可以將此事件繼續精進
+
+#2020
+
+location_109年新竹縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$保護裝備名稱|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$保護裝備名稱|> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$保護裝備名稱|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$保護裝備名稱|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$保護裝備名稱 |> table()|> sort(decreasing=T)
+
+```
+
+```{r}
+# 15. 事故當下,當事者行動狀態子類別名稱為那些？ 
+
+#觀察結果，當事者行動狀態通常向前直行中，有趣的是，左轉彎總是相較於右轉彎容易發生事故，這應該是左駕的緣故、快車道設立在道路內側、機車未依規定執行兩段式左轉
+
+# 2020
+
+location_109年新竹縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$當事者行動狀態子類別名稱|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$當事者行動狀態子類別名稱|> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$當事者行動狀態子類別名稱|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$當事者行動狀態子類別名稱|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$當事者行動狀態子類別名稱 |> table()|> sort(decreasing=T)
+
+```
+
+```{r}
+# 18. 事故的肇因研判子類別名稱.個別為那些？
+
+#觀察結果，事故的肇因研判子類別名稱.個別中，以尚未發現肇事因素、未注意車前狀態、 未依規定讓車等三大主要造成事故的原因，且如同先前所發現，左轉彎未能依照規定總是相較於右轉彎未能依照規定容易發生事故，推測是左駕的緣故、快車道設立在道路內側、機車未依規定執行兩段式左轉、紅燈右轉風險性較左轉低等緣故
+                                        
+
+
+# 2020
+
+location_109年新竹縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_109年新竹市警察局$肇因研判子類別名稱.個別|> table()|> sort(decreasing=T)
+location_109年桃園市政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_109年屏東縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_109年花蓮縣警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_109年南投縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2019
+
+location_108年新竹市警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_108年新竹縣政府警察局$肇因研判子類別名稱.個別|> table()|> sort(decreasing=T)
+location_108年屏東縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_108年桃園市政府警察局$肇因研判子類別名稱.個別|> table()|> sort(decreasing=T)
+location_108年宜蘭縣政府警察局$肇因研判子類別名稱.個別|> table()|> sort(decreasing=T)
+location_108年彰化縣警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+
+#-------------------------------------------------
+
+#2018
+
+location_107年新竹市警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_107年新竹縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_107年屏東縣政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_107年高雄市政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_107年臺中市政府警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+location_107年臺東縣警察局$肇因研判子類別名稱.個別 |> table()|> sort(decreasing=T)
+
+```
+```
 

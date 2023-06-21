@@ -1,7 +1,9 @@
 ---
-title: "accident"
+title: "觀察107-109年全台不同地區事故發生件數，分析造成事故發生的可能原因並分享看法"
+subtitle:"藉由敘述統計的方法，針對不同變數與事故發生件數之相關性，並嘗試歸納結果得出結論"
+author: "410977004 會計三 曾麒峰 , 411176004 不動一 陳昱淇"
+date: "2023-06-21"
 output: html_document
-date: "2023-06-18"
 ---
 ```{r}
 Final_project<- list()
@@ -73,7 +75,7 @@ Final_project$year108 <- merged_data_108
 Final_project$year107 <- merged_data_107
 ```
 
-# Split the data frame under specific conditions
+# Split the data frame under specific conditions：各地區的管轄警察局
 ```{r}
 
 location_split_109 <- split(Final_project$year109, Final_project$year109$處理單位名稱警局層)
@@ -841,7 +843,7 @@ location_107年臺東縣警察局$路面狀況.路面狀態名稱 |> table()|> s
 ```{r}
 # 8. 路面狀況.路面缺陷名稱會影響事故發生件數嗎？
 
-#根據結果，路面狀況.路面缺陷不太會是影響事故發生次數之原因，以無缺陷為最多
+#根據結果，路面狀況.路面缺陷可能是影響事故發生次數之原因，以無缺陷為最多，有坑洞次之
 
 #2020
 
@@ -880,7 +882,7 @@ location_107年臺東縣警察局$路面狀況.路面缺陷名稱 |> table()|> s
 ```{r}
 # 9. 車道劃分會影響事故發生件數嗎？ 
 
-#根據結果，車道劃分不太會是影響事故發生次數之原因，以未繪設車道線為最多
+#根據結果，車道劃分會是影響事故發生次數之原因，以未繪設車道線為最多
 
 
 #2020
@@ -1035,10 +1037,12 @@ location_107年臺東縣警察局$肇因研判子類別名稱.主要 |> table()|
 ```{r}
 # 13. 當事者事故發生時年齡？ 平均、中位數、標準差、第一四分位、第三四分位
 
-#根據觀察，當事者事故發生時年齡平均、中位數約落在35-38歲 、第一四分位約落在21-24歲、第三四分位約落在50-55歲，看不太出年齡與事故發生次數之相關性
+#根據觀察，當事者事故發生時年齡平均、中位數約落在35-38歲、第一四分位約落在21-24歲、第三四分位約落在50-55歲，事故好發於30-40歲之間，推測是該年齡層上路的機會最高，且外出時間通常恰逢事故好發尖峰期間
 
 
 #2020
+
+location_109年新竹縣政府警察局$當事者事故發生時年齡|>cut(location_109年新竹縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_109年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1057,6 +1061,8 @@ print(result.q3)
 
 #---------
 
+location_109年新竹市警察局$當事者事故發生時年齡|>cut(location_109年新竹市警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
+
 result.mean<- mean(location_109年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
 
@@ -1073,7 +1079,7 @@ result.q3<- quantile(location_109年新竹市警察局$當事者事故發生時�
 print(result.q3)
 
 #---------
-
+location_109年桃園市政府警察局$當事者事故發生時年齡|>cut(location_109年桃園市政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_109年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1091,6 +1097,7 @@ result.q3<- quantile(location_109年桃園市政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_109年屏東縣政府警察局$當事者事故發生時年齡|>cut(location_109年屏東縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_109年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1108,6 +1115,7 @@ result.q3<- quantile(location_109年屏東縣政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_109年花蓮縣警察局$當事者事故發生時年齡|>cut(location_109年花蓮縣警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_109年花蓮縣警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1125,6 +1133,7 @@ result.q3<- quantile(location_109年花蓮縣警察局$當事者事故發生時�
 print(result.q3)
 
 #---------
+location_109年南投縣政府警察局$當事者事故發生時年齡|>cut(location_109年南投縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_109年南投縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1145,6 +1154,7 @@ print(result.q3)
 
 
 #2019
+location_108年新竹市警察局$當事者事故發生時年齡|>cut(location_108年新竹市警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 
 result.mean<- mean(location_108年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
@@ -1163,6 +1173,7 @@ result.q3<- quantile(location_108年新竹市警察局$當事者事故發生時�
 print(result.q3)
 
 #---------
+location_108年新竹縣政府警察局$當事者事故發生時年齡|>cut(location_108年新竹縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_108年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1180,6 +1191,7 @@ result.q3<- quantile(location_108年新竹縣政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_108年屏東縣政府警察局$當事者事故發生時年齡|>cut(location_108年屏東縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_108年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1198,6 +1210,7 @@ print(result.q3)
 
 
 #---------
+location_108年桃園市政府警察局$當事者事故發生時年齡|>cut(location_108年桃園市政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_108年桃園市政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1215,6 +1228,7 @@ result.q3<- quantile(location_108年桃園市政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_108年宜蘭縣政府警察局$當事者事故發生時年齡|>cut(location_108年宜蘭縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_108年宜蘭縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1232,6 +1246,7 @@ result.q3<- quantile(location_108年宜蘭縣政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_108年彰化縣警察局$當事者事故發生時年齡|>cut(location_108年彰化縣警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_108年彰化縣警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1251,6 +1266,7 @@ print(result.q3)
 #---------
 
 #2018
+location_107年新竹市警察局$當事者事故發生時年齡|>cut(location_107年新竹市警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_107年新竹市警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1268,6 +1284,7 @@ result.q3<- quantile(location_107年新竹市警察局$當事者事故發生時�
 print(result.q3)
 
 #---------
+location_107年新竹縣政府警察局$當事者事故發生時年齡|>cut(location_107年新竹縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_107年新竹縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1285,6 +1302,8 @@ result.q3<- quantile(location_107年新竹縣政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_107年屏東縣政府警察局$當事者事故發生時年齡|>cut(location_107年屏東縣政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
+
 result.mean<- mean(location_107年屏東縣政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
 
@@ -1301,6 +1320,7 @@ result.q3<- quantile(location_107年屏東縣政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_107年高雄市政府警察局$當事者事故發生時年齡|>cut(location_107年高雄市政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_107年高雄市政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1318,6 +1338,7 @@ result.q3<- quantile(location_107年高雄市政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_107年臺中市政府警察局$當事者事故發生時年齡|>cut(location_107年臺中市政府警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_107年臺中市政府警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1335,6 +1356,7 @@ result.q3<- quantile(location_107年臺中市政府警察局$當事者事故發�
 print(result.q3)
 
 #---------
+location_107年臺東縣警察局$當事者事故發生時年齡|>cut(location_107年臺東縣警察局$當事者事故發生時年齡, breaks = seq(0, 100, by = 10), include.lowest = TRUE, labels = FALSE)|>table()|>sort( decreasing = T)
 
 result.mean<- mean(location_107年臺東縣警察局$當事者事故發生時年齡,trim=0.1)   
 print(result.mean)
@@ -1355,7 +1377,7 @@ print(result.q3)
 ```
 
 ```{r}
-# 14. 發生事故時使用了那些保護裝置名稱？ 
+# 14. 發生事故時是否使用了那些保護裝置名稱？ 
 
 #觀察下列結果，發現仍有部分民眾未戴案全帽或未繫安全帶(未使用幼童安全椅)，希望未來可以將此事件繼續精進
 
@@ -1431,7 +1453,7 @@ location_107年臺東縣警察局$當事者行動狀態子類別名稱 |> table(
 ```
 
 ```{r}
-# 18. 事故的肇因研判子類別名稱.個別為那些？
+# 16. 事故的肇因研判子類別名稱.個別為那些？
 
 #觀察結果，事故的肇因研判子類別名稱.個別中，以尚未發現肇事因素、未注意車前狀態、 未依規定讓車等三大主要造成事故的原因，且如同先前所發現，左轉彎未能依照規定總是相較於右轉彎未能依照規定容易發生事故，推測是左駕的緣故、快車道設立在道路內側、機車未依規定執行兩段式左轉、紅燈右轉風險性較左轉低等緣故
                                         
@@ -1470,4 +1492,35 @@ location_107年臺東縣警察局$肇因研判子類別名稱.個別 |> table()|
 
 ```
 ```
+# Conclusion for the accidents' characteristics
+1. 事故好發時間：春節、暑假、年末，往往有大批人口出遊、返鄉
+2. 事故好發天候：晴天，多數人出門習性
+3. 事故好發光線：自然光、夜間有照明，符合生物時鐘及行業作息，唯夜間行駛要特別注意
+4. 事故好發路況：市區道路、鄉村道路-> 圓環、坡路、隧道 ，較不常見的行車情況
+5. 事故好發位置：一般車道、機車專用道、機車待轉區，駕駛人習慣不良、駕照取得容易及道路設計等多種因素組成
+6. 事故好發路面：乾燥有坑洞，過載的交通工具經常會損害路面，導致修補不斷
+7. 事故好發車道：未劃分車道容易造成事故，但規劃不良更容易造成事故發生
+8. 事故好發類型：車與車監側撞、追撞、同向擦撞，導因於車速過快、未保持安全距離、取締鬆緊程度
+9. 事故好發肇因：未依規定禮讓、未注意車前狀態、違規或不當行為、違反特定標誌、左轉彎未依規定
+10. 事故好發年齡：30-40歲區間，頻繁使用交通工具、在事故發生尖峰時段出行
+11. 事故保護裝置：未使用兒童座椅及未配戴安全帽仍不在少數，一個疏忽可能造成不可挽回的後果
+12. 事故者行動狀態：直行、左轉彎，左駕、快車道設立在道路內側、機車未依規定執行兩段式左轉的緣故
 
+#Summary
+由於事故發生的原因千奇百怪，在有限度的類別資料中，我們的分析結果僅能告知用路人事故好發一些特徵，然而事故發生終究是一機率問題，就算能夠依照模擬等方式去進行預測，也無法保證一定不會發生事故，或許結合古典統計的波松分配以及無母數的大數據估計法可以盡可能逼近真實值，在未來的某天希望可以不再有事故發生。
+
+# Extension
+# 由於第一次處理非數值的資料，加上程式分析技巧不夠純熟，
+本次專案僅能根據不同的變數分別與事故發生次數相比對。
+這份資料仍有許多問題值得探討，我也羅列幾項想法，期待未來精進程式分析技巧，回答這些有趣的問題。
+1. 每項變數是否能得出影響事故發生件數的權重呢？
+2. 各項變數之間是否會互相影響？討論類別資料間的相關性可以使用甚麼分析方法
+3. 本次專案分析並未考慮當地人口數量及密度，無法得知各地區發生車禍的機率，
+   如果可以進一步獲得特定時段、區域的車流量資料，將可以提醒用路人避開事故好發的尖峰期
+   並且亦可以向地方政府提出改善道路設計的建議
+4. 我們知道數值資料可以藉由迴歸分析等模擬方式產出預測，藉由修正慢慢趨近真實值，
+   因此，我也思考是否有特殊的分析方法可以將類別資料轉換成具有統計意義的統計量進行迴歸分析
+5. 由於資料呈現連續性質，故若學生於未來學習時間序列分析、縱向分析、文字探勘等技巧，或許可以藉由一系列的    事故資料繪製出事故的趨勢圖，這也是我最為期待的分析結果
+最後，感謝各位老師及同學瀏覽此影片，希望大家能夠盡情分享你的看法與關於這些問題的解答在課程的聊天室，
+期待收到各位的回覆，再次感謝我的組員 不動一 陳昱淇 與協助我完成專案的各路大神，勉勵大家一同成長！
+   
